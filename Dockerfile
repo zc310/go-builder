@@ -134,6 +134,7 @@ RUN set -eu; \
 ARG GO_LEGACY_VERSION=1.27.4-1
 ARG GO_LEGACY_SHA256_AMD64=ac19ede77803f1b7e1de6bd43fa01882c6b16e8efd06a78416392a08bca99bc2
 ARG GO_LEGACY_SHA256_ARM64=92ec3691d854b73b2a0e6d70821c9c7de0303571ef4591fee3cfcd321db25a4c
+# 按发布包中的固定目录复制工具链，不依赖前导 ./ 的层数。
 RUN set -eu; \
     case "$TARGETARCH" in \
         amd64) checksum="$GO_LEGACY_SHA256_AMD64" ;; \
@@ -146,8 +147,9 @@ RUN set -eu; \
         "https://github.com/thongtech/go-legacy-win7/releases/download/v${GO_LEGACY_VERSION}/${archive}" \
         -o "$download_dir/$archive"; \
     echo "$checksum  $download_dir/$archive" | sha256sum -c -; \
+    tar -xzf "$download_dir/$archive" -C "$download_dir"; \
     mkdir -p "$GOROOT"; \
-    tar -xzf "$download_dir/$archive" -C "$GOROOT" --strip-components=1; \
+    cp -a "$download_dir/go-legacy-win7/." "$GOROOT/"; \
     rm -rf "$download_dir"; \
     "$GOROOT/bin/go" version
 
