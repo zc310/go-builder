@@ -19,6 +19,7 @@ rpm --version
 libreoffice --headless --version
 tesseract --version
 mutool -v
+test -r /usr/share/poppler/cMap/Adobe-GB1/UniGB-UCS2-V
 python3 -c 'import numpy, PIL, cairosvg, fitz'
 
 pkg-config --exists gl egl glesv2 x11 xrandr xinerama xcursor xi xfixes \

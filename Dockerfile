@@ -76,6 +76,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-ins
     tesseract-ocr-chi-tra-vert \
     libgxps-utils \
     poppler-utils \
+    poppler-data \
     mupdf \
     mupdf-tools \
     # Python、Java；Node.js 和 npm 从官方镜像单独复制

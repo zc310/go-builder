@@ -10,7 +10,7 @@
 - 原生 GCC / G++、pkg-config；Fyne / Gio 所需 X11、OpenGL、Wayland、Vulkan；GTK4、WebKitGTK 6.0 / 4.1、libffi。
 - GCC MinGW-w64：Windows amd64 CGO；LLVM-MinGW [`20261117`](https://github.com/mstorsjo/llvm-mingw/releases/tag/20261117)（LLVM 23.1.6）：Windows ARM64 CGO。
 - Binaryen `133`，支持 OFD Makefile 使用的 `wasm-opt` 参数；nFPM `2.48.0`、RPM、NSIS、zip / unzip。
-- LibreOffice、Tesseract 中英文 OCR、Poppler、MuPDF（包含 `mutool`）、XPS 工具。
+- LibreOffice、Tesseract 中英文 OCR、Poppler（包含 CJK CMap 数据）、MuPDF（包含 `mutool`）、XPS 工具。
 - Noto CJK、文泉驿微米黑 / 正黑等系统字体，以及与 OFD CI 一致的 `hanzi-fonts` 文档字体包。
 - Python 3、NumPy、Pillow、CairoSVG、PyMuPDF；Node.js `22.23.5` / npm、OpenJDK 21。Node.js 与 npm 从官方 `node:22.23.5-bookworm-slim` 镜像复制，不使用 Ubuntu 24.04 默认的 Node.js 18，以满足 Playwright 的 Node.js ≥20 要求；最终系统仍为 Ubuntu 24.04。
 - amd64 安装官方 Google Chrome；arm64 安装 Playwright `1.65.1` 对应的 Chromium。统一入口为 `$CHROME_BIN`（`/usr/local/bin/chrome`）。
@@ -86,7 +86,7 @@ CGO_ENABLED=1 GOOS=windows GOARCH=arm64 \
 
 - 原生 Linux CGO、Windows amd64 / ARM64 CGO 编译；
 - WASM 编译及完整优化参数；
-- 图形库 pkg-config、中文字体、三个额外字体包的注册与非 root 可读性、Python 模块、打包工具；
+- 图形库 pkg-config、Poppler CJK CMap、中文字体、三个额外字体包的注册与非 root 可读性、Python 模块、打包工具；
 - 浏览器无头启动并读取页面。
 
 两个架构均通过后才合并正式的多架构标签：
